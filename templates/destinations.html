@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Destinations{% endblock %}
+
+{% block content %}
+  <h2>Our Top Destinations</h2>
+  <a href="{{ url_for('add_destination') }}" class="btn btn-success mb-3">Add New Destination</a>
+  <div class="row">
+    {% for destination in destinations %}
+      <div class="col-md-4">
+        <div class="card">
+          <img src="{{ destination.image }}" alt="{{ destination.name }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ destination.name }}</h5>
+            <p class="card-text">{{ destination.description }}</p>
+            <a href="{{ url_for('edit_destination', id=destination.id) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ url_for('delete_destination', id=destination.id) }}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
